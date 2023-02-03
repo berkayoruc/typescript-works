@@ -97,13 +97,33 @@
 // const myMap: CustomMap = new Map();
 // myMap.set('berkay', 8);
 
-// MODULES
+/* MODULES */
 // import Person, { Student } from './person';
-import { Job, Person /*, Student*/ } from './all';
-import type { Student } from './person';
-console.log(Person.isim);
-const a: Student = {
-	isim: 'asd',
-	sinif: 2,
+// import { Job, Person /*, Student*/ } from './all';
+// import type { Student } from './person';
+// console.log(Person.isim);
+// const a: Student = {
+// 	isim: 'asd',
+// 	sinif: 2,
+// };
+// console.log({ sinif: 9, isim: 'asd' } as Student);
+
+/* OBJECT TYPING */
+type MyObject = {
+	isim: string;
+	yas: number;
+	[key: string]: any;
 };
-console.log({ sinif: 9, isim: 'asd' } as Student);
+
+const myObject: MyObject = {
+	isim: 'berkay',
+	yas: 8,
+	berkay: Symbol(),
+};
+
+const mObj: Record<string, { isim: string; yas: number }> = {
+	aaa: {
+		isim: 'berkay',
+		yas: 8,
+	},
+};
