@@ -8,5 +8,8 @@
 		"esModuleInterop": false,
 		"outDir": "dist",
 		"rootDir": "src",
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		// "declarationDir": "dist/types"
 	}
 }
