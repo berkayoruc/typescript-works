@@ -109,21 +109,108 @@
 // console.log({ sinif: 9, isim: 'asd' } as Student);
 
 /* OBJECT TYPING */
-type MyObject = {
+// type MyObject = {
+// 	isim: string;
+// 	yas: number;
+// 	[key: string]: any;
+// };
+
+// const myObject: MyObject = {
+// 	isim: 'berkay',
+// 	yas: 8,
+// 	berkay: Symbol(),
+// };
+
+// const mObj: Record<string, { isim: string; yas: number }> = {
+// 	aaa: {
+// 		isim: 'berkay',
+// 		yas: 8,
+// 	},
+// };
+
+/* INTERFACES */
+// Interface genişletilebilir ancak type (static) genişletilemez
+
+interface Person {
 	isim: string;
-	yas: number;
+	soyad: string;
 	[key: string]: any;
-};
+}
 
-const myObject: MyObject = {
+const berkay: Person = {
 	isim: 'berkay',
-	yas: 8,
-	berkay: Symbol(),
+	soyad: 'oruc',
 };
 
-const mObj: Record<string, { isim: string; yas: number }> = {
-	aaa: {
-		isim: 'berkay',
-		yas: 8,
+// Interface içinden type alınabilir
+const isim: Person['isim'] = '';
+
+interface MyArray {
+	[index: number]: string | number;
+}
+
+// const arry: MyArray = {
+// 	0: 'berkay',
+// 	1: 4,
+// };
+const arry: MyArray = ['kadir', 1];
+
+// En altta verilen döndürme tipi neyse onu istiyor (overloading)
+interface IFunction {
+	(isim: string, tekrar: number): void;
+	(isim: number, tekrar: boolean): boolean;
+	// (isim: number, tekrar: boolean): number;
+}
+
+const myFunc: IFunction = (name, count) => {
+	return true;
+};
+
+interface IAnotherFunction extends IFunction {
+	(yas: number, tekrar: number): void;
+}
+
+interface MongoResponse {
+	_id: string;
+	createdAt: string;
+	updateAt: string;
+}
+
+interface BooksResponse extends MongoResponse {
+	name: string;
+	date: Date;
+}
+
+function getBooks(): BooksResponse {
+	return {
+		_id: '',
+		createdAt: '',
+		updateAt: '',
+		name: '',
+		date: new Date(),
+	};
+}
+
+interface IStudent {
+	isim: string;
+	soyad: string;
+	sinif: number;
+	getStudentInformation(): {
+		isim: IStudent['isim'];
+		soyad: IStudent['soyad'];
+		sinif: IStudent['sinif'];
+	};
+}
+
+const obj: IStudent = {
+	isim: 'berkay',
+	sinif: 5,
+	soyad: 'akjsd',
+	getStudentInformation() {
+		return {
+			isim: this.isim,
+			sinif: this.sinif,
+			soyad: this.soyad,
+		};
 	},
 };
